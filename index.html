@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pastry - Minimalistic Clipboard Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-glow"></div>
+    
+    <nav class="navbar glass">
+        <div class="logo">
+            <span class="icon">🥐</span> Pastry
+        </div>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#install">Install</a>
+            <a href="#" class="btn-primary">Download</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <div class="badge">macOS Menu Bar App</div>
+                <h1>Minimalistic.<br>Highly Polished.<br>Pastry.</h1>
+                <p class="subtitle">A clipboard manager that lives quietly in your menu bar. Designed with a native macOS HUD aesthetic.</p>
+                <div class="cta-group">
+                    <a href="#" class="btn-primary large">Download for Mac</a>
+                    <span class="version-info">v1.0 • macOS 14.0+</span>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="mockup-window glass">
+                    <div class="window-header">
+                        <div class="dot red"></div>
+                        <div class="dot yellow"></div>
+                        <div class="dot green"></div>
+                    </div>
+                    <div class="window-content">
+                        <!-- Simulated Interface -->
+                        <div class="pastry-ui">
+                            <div class="search-bar">Search clipboard...</div>
+                            <div class="list-item active">
+                                <span class="content">https://tryalcove.com/</span>
+                                <span class="shortcut">⌘1</span>
+                            </div>
+                            <div class="list-item">
+                                <span class="content">Code snippet for MVVM arch...</span>
+                                <span class="shortcut">⌘2</span>
+                            </div>
+                            <div class="list-item">
+                                <span class="content">Meeting notes: 10 AM...</span>
+                                <span class="shortcut">⌘3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="section-header">
+                <h2>Baked to Perfection</h2>
+                <p>Simple, powerful features that stay out of your way.</p>
+            </div>
+            
+            <div class="feature-grid">
+                <div class="feature-card glass">
+                    <div class="feature-icon">🕒</div>
+                    <h3>Recents History</h3>
+                    <p>Automatically captures the last 10 text snippets copied to your clipboard.</p>
+                </div>
+                <div class="feature-card glass">
+                    <div class="feature-icon">⌨️</div>
+                    <h3>Global Hotkeys</h3>
+                    <p>Quickly copy items using <code>Cmd+Opt+1</code> through <code>0</code>.</p>
+                </div>
+                <div class="feature-card glass">
+                    <div class="feature-icon">📁</div>
+                    <h3>Custom Profiles</h3>
+                    <p>Create named folders to organize your persistent snippets.</p>
+                </div>
+                <div class="feature-card glass">
+                    <div class="feature-icon">✨</div>
+                    <h3>Modern HUD</h3>
+                    <p>Clean, glassmorphic UI that looks great in Light and Dark modes.</p>
+                </div>
+                <div class="feature-card glass">
+                    <div class="feature-icon">🗑️</div>
+                    <h3>Smart Deletion</h3>
+                    <p>Swipe left or press <code>Cmd+D</code> with safety confirmations.</p>
+                </div>
+                <div class="feature-card glass">
+                    <div class="feature-icon">🤫</div>
+                    <h3>Unobtrusive</h3>
+                    <p>Lives in the menu bar with a croissant icon 🥐. No Dock icon.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="install" class="installation">
+            <div class="container">
+                <div class="install-card glass">
+                    <h2>How to Build & Run</h2>
+                    <div class="steps">
+                        <div class="step">
+                            <span class="step-num">1</span>
+                            <p>Open <strong>Pastry.xcodeproj</strong> in Xcode 15+</p>
+                        </div>
+                        <div class="step">
+                            <span class="step-num">2</span>
+                            <p>Select the <strong>Pastry</strong> scheme</p>
+                        </div>
+                        <div class="step">
+                            <span class="step-num">3</span>
+                            <p>Build and Run (<strong>Cmd+R</strong>)</p>
+                        </div>
+                    </div>
+                    <div class="requirements">
+                        <p><strong>Requirements:</strong> macOS 14.0 or later • Xcode 15+</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">🥐 Pastry</div>
+            <p>Designed with love for macOS.</p>
+            <div class="socials">
+                <a href="#">GitHub</a>
+                <a href="#">Twitter</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
