@@ -181,13 +181,19 @@ h1 {
     position: relative;
     perspective: 1000px;
     animation: fadeInScale 1s ease-out 0.2s backwards;
+    /* Center the container content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Main App Window Mockup */
 .mockup-window.app-window {
     position: absolute;
+    /* Remove translate to avoid fighting with flex/new positioning if we want simpler centering, 
+       but absolute + translate is reliable. Let's tweak it to be VISUALLY centered considering the other panel */
     top: 50%;
-    left: 50%;
+    left: 45%; /* Shift left slightly to counter-balance the help panel */
     transform: translate(-50%, -50%) rotateX(5deg);
     width: 420px;
     background: rgba(28, 28, 30, 0.95); /* Deep charcoal */
@@ -202,6 +208,15 @@ h1 {
 .mockup-window.app-window:hover {
     transform: translate(-50%, -55%) rotateX(2deg);
 }
+/* ... */
+/* Help Panel Mockup (Floating) */
+.mockup-window.help-panel {
+    position: absolute;
+    top: 55%;
+    left: 60%; /* Pull closer to center */
+    width: 280px;
+    /* ... */
+
 
 .app-header {
     display: flex;
@@ -288,12 +303,13 @@ h1 {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    position: relative; /* For absolute positioning of canvas if needed */
 }
 
-.row-content.blurred {
-    filter: blur(4px);
-    opacity: 0.7;
-    user-select: none;
+/* Remove CSS blur since we use canvas now */
+.invisible-ink {
+    height: 1.2em; /* Ensure height for canvas */
+    display: block;
 }
 
 
@@ -301,7 +317,7 @@ h1 {
 .mockup-window.help-panel {
     position: absolute;
     top: 55%;
-    left: 65%; /* Offset to right */
+    left: 60%; /* Pull closer to center from 65% */
     width: 280px;
     background: rgba(40, 40, 42, 0.95); /* Slightly lighter charcoal */
     border-radius: var(--app-radius);
