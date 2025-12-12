@@ -14,7 +14,7 @@
     
     <nav class="navbar glass">
         <div class="logo">
-            <img src="images/logo.png" alt="Pastry Logo" class="logo-img"> Pastry
+            <span class="icon">🥐</span> Pastry
         </div>
         <div class="nav-links">
             <a href="#features">Features</a>
@@ -42,7 +42,22 @@
                         <div class="dot green"></div>
                     </div>
                     <div class="window-content">
-                        <img src="images/screenshot-main.png" alt="Pastry App Interface" class="app-screenshot">
+                        <!-- Simulated Interface -->
+                        <div class="pastry-ui">
+                            <div class="search-bar">Search clipboard...</div>
+                            <div class="list-item active">
+                                <span class="content">https://tryalcove.com/</span>
+                                <span class="shortcut">⌘1</span>
+                            </div>
+                            <div class="list-item">
+                                <span class="content">Code snippet for MVVM arch...</span>
+                                <span class="shortcut">⌘2</span>
+                            </div>
+                            <div class="list-item">
+                                <span class="content">Meeting notes: 10 AM...</span>
+                                <span class="shortcut">⌘3</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -53,45 +68,17 @@
                 <h2>Baked to Perfection</h2>
                 <p>Simple, powerful features that stay out of your way.</p>
             </div>
-
-            <!-- Feature Showcase Rows -->
-            <div class="feature-showcase">
-                <div class="showcase-item">
-                    <div class="showcase-text">
-                        <h3>Global Hotkeys</h3>
-                        <p>Access your history instantly. Use <code>Cmd+Option+1</code> through <code>0</code> to paste recent items without breaking your flow.</p>
-                        <ul class="feature-list">
-                            <li>⚡️ Instant paste</li>
-                            <li>🔢 Numbered shortcuts</li>
-                            <li>⌨️ Keyboard centric</li>
-                        </ul>
-                    </div>
-                    <div class="showcase-visual glass">
-                        <img src="images/screenshot-shortcuts.png" alt="Shortcuts Interface">
-                    </div>
-                </div>
-
-                <div class="showcase-item reverse">
-                    <div class="showcase-text">
-                        <h3>Smart Deletion</h3>
-                        <p>Keep your clipboard clean. Swipe left on any profile or press <code>Cmd+D</code>. Includes a safety confirmation so you never lose important snippets.</p>
-                        <ul class="feature-list">
-                            <li>🗑 Swipe to delete</li>
-                            <li>🛡 Safety confirmation</li>
-                            <li>🧹 One-click cleanup</li>
-                        </ul>
-                    </div>
-                    <div class="showcase-visual glass">
-                        <img src="images/screenshot-delete.png" alt="Delete Confirmation">
-                    </div>
-                </div>
-            </div>
             
             <div class="feature-grid">
                 <div class="feature-card glass">
                     <div class="feature-icon">🕒</div>
                     <h3>Recents History</h3>
                     <p>Automatically captures the last 10 text snippets copied to your clipboard.</p>
+                </div>
+                <div class="feature-card glass">
+                    <div class="feature-icon">⌨️</div>
+                    <h3>Global Hotkeys</h3>
+                    <p>Quickly copy items using <code>Cmd+Opt+1</code> through <code>0</code>.</p>
                 </div>
                 <div class="feature-card glass">
                     <div class="feature-icon">📁</div>
@@ -104,9 +91,14 @@
                     <p>Clean, glassmorphic UI that looks great in Light and Dark modes.</p>
                 </div>
                 <div class="feature-card glass">
+                    <div class="feature-icon">🗑️</div>
+                    <h3>Smart Deletion</h3>
+                    <p>Swipe left or press <code>Cmd+D</code> with safety confirmations.</p>
+                </div>
+                <div class="feature-card glass">
                     <div class="feature-icon">🤫</div>
                     <h3>Unobtrusive</h3>
-                    <p>Lives in the menu bar with a croissant icon. No Dock icon.</p>
+                    <p>Lives in the menu bar with a croissant icon 🥐. No Dock icon.</p>
                 </div>
             </div>
         </section>
@@ -139,9 +131,7 @@
 
     <footer>
         <div class="footer-content">
-            <div class="footer-logo">
-                <img src="images/logo.png" alt="Pastry Logo" class="footer-logo-img"> Pastry
-            </div>
+            <div class="footer-logo">🥐 Pastry</div>
             <p>Designed with love for macOS.</p>
             <div class="socials">
                 <a href="#">GitHub</a>
