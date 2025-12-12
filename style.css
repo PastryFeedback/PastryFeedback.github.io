@@ -190,10 +190,9 @@ h1 {
 /* Main App Window Mockup */
 .mockup-window.app-window {
     position: absolute;
-    /* Remove translate to avoid fighting with flex/new positioning if we want simpler centering, 
-       but absolute + translate is reliable. Let's tweak it to be VISUALLY centered considering the other panel */
+    /* Centered positioning */
     top: 50%;
-    left: 45%; /* Shift left slightly to counter-balance the help panel */
+    left: 50%; 
     transform: translate(-50%, -50%) rotateX(5deg);
     width: 420px;
     background: rgba(28, 28, 30, 0.95); /* Deep charcoal */
@@ -208,15 +207,6 @@ h1 {
 .mockup-window.app-window:hover {
     transform: translate(-50%, -55%) rotateX(2deg);
 }
-/* ... */
-/* Help Panel Mockup (Floating) */
-.mockup-window.help-panel {
-    position: absolute;
-    top: 55%;
-    left: 60%; /* Pull closer to center */
-    width: 280px;
-    /* ... */
-
 
 .app-header {
     display: flex;
@@ -313,49 +303,7 @@ h1 {
 }
 
 
-/* Help Panel Mockup (Floating) */
-.mockup-window.help-panel {
-    position: absolute;
-    top: 55%;
-    left: 60%; /* Pull closer to center from 65% */
-    width: 280px;
-    background: rgba(40, 40, 42, 0.95); /* Slightly lighter charcoal */
-    border-radius: var(--app-radius);
-    padding: 16px;
-    z-index: 1;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-    transform: rotateZ(2deg);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.panel-header {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    color: #8E8E93;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    margin-bottom: 12px;
-}
-
-.panel-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-    font-size: 0.85rem;
-    color: #E5E5EA;
-}
-
-.panel-row:last-child {
-    margin-bottom: 0;
-}
-
-.panel-icon {
-    font-size: 1rem;
-    opacity: 0.8;
-    width: 20px;
-    text-align: center;
-}
+/* Help Panel Mockup (Floating) - REMOVED */
 
 /* Features Section */
 .features {
