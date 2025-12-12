@@ -66,7 +66,12 @@ body {
     font-size: 1.2rem;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
+}
+
+.logo-img {
+    height: 28px;
+    width: auto;
 }
 
 .nav-links {
@@ -180,6 +185,7 @@ h1 {
     overflow: hidden;
     transform: rotateX(5deg);
     transition: transform 0.3s;
+    line-height: 0; /* Remove gap below image */
 }
 
 .mockup-window:hover {
@@ -187,7 +193,7 @@ h1 {
 }
 
 .window-header {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(30, 30, 30, 0.9);
     padding: 12px;
     display: flex;
     gap: 8px;
@@ -204,51 +210,84 @@ h1 {
 .yellow { background: #ffbd2e; }
 .green { background: #27c93f; }
 
-.pastry-ui {
-    padding: 20px;
+.window-content {
+    background: #000;
+}
+
+.app-screenshot {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Feature Showcase */
+.feature-showcase {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 100px;
+    margin-bottom: 80px;
 }
 
-.search-bar {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 10px 12px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    margin-bottom: 8px;
+.showcase-item {
     display: flex;
     align-items: center;
+    gap: 60px;
 }
 
-.list-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 12px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    cursor: default;
+.showcase-item.reverse {
+    flex-direction: row-reverse;
 }
 
-.list-item.active {
-    background: rgba(0, 122, 255, 0.3); /* macOS selection blue tint */
-    color: white;
+.showcase-text {
+    flex: 1;
 }
 
-.list-item .shortcut {
+.showcase-text h3 {
+    font-size: 2rem;
+    margin-bottom: 16px;
+    background: linear-gradient(90deg, #fff, #aaa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.showcase-text p {
+    font-size: 1.1rem;
     color: var(--text-secondary);
-    font-size: 0.8rem;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 2px 6px;
-    border-radius: 4px;
+    margin-bottom: 24px;
 }
 
-.list-item.active .shortcut {
-    color: white;
+.feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
-/* Features Section */
+.feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: #ddd;
+}
+
+.showcase-visual {
+    flex: 1;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.showcase-visual img {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+/* Features Grid */
 .features {
     padding: 100px 20px;
     max-width: 1100px;
@@ -257,7 +296,7 @@ h1 {
 
 .section-header {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 80px;
 }
 
 .section-header h2 {
@@ -272,7 +311,7 @@ h1 {
 
 .feature-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 24px;
 }
 
@@ -369,6 +408,15 @@ footer {
 .footer-logo {
     font-weight: 700;
     margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.footer-logo-img {
+    height: 24px;
+    width: auto;
 }
 
 .footer-content p {
@@ -434,5 +482,13 @@ footer {
     .hero {
         padding-top: 100px;
     }
+    
+    .showcase-item {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .showcase-item.reverse {
+        flex-direction: column;
+    }
 }
-
