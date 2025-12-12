@@ -4,10 +4,11 @@
     --text-secondary: #a1a1aa;
     --accent-color: #f59e0b; /* Golden pastry color */
     --accent-glow: rgba(245, 158, 11, 0.3);
-    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-bg: rgba(30, 30, 30, 0.6); /* Darker charcoal base for app mockup */
     --glass-border: rgba(255, 255, 255, 0.1);
     --card-hover-bg: rgba(255, 255, 255, 0.08);
     --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --app-radius: 12px;
 }
 
 * {
@@ -38,11 +39,12 @@ body {
 
 /* Glassmorphism Utility */
 .glass {
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(20, 20, 20, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 /* Navigation */
@@ -59,6 +61,7 @@ body {
     align-items: center;
     z-index: 1000;
     border-radius: 100px;
+    background: rgba(20, 20, 20, 0.8);
 }
 
 .logo {
@@ -114,7 +117,7 @@ body {
 
 .hero-content {
     max-width: 800px;
-    margin-bottom: 60px;
+    margin-bottom: 80px;
     animation: fadeInUp 0.8s ease-out;
 }
 
@@ -164,88 +167,172 @@ h1 {
     color: var(--text-secondary);
 }
 
-/* Mockup */
+/* Mockup Visuals */
 .hero-visual {
     width: 100%;
-    max-width: 800px;
+    max-width: 900px;
+    height: 500px; /* Constrain height to keep items relative */
+    position: relative;
     perspective: 1000px;
     animation: fadeInScale 1s ease-out 0.2s backwards;
 }
 
-.mockup-window {
-    background: rgba(20, 20, 20, 0.8);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+/* Main App Window Mockup */
+.mockup-window.app-window {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateX(5deg);
+    width: 420px;
+    background: rgba(28, 28, 30, 0.95); /* Deep charcoal */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--app-radius);
+    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.6);
     overflow: hidden;
-    transform: rotateX(5deg);
-    transition: transform 0.3s;
+    z-index: 2;
+    transition: transform 0.3s ease;
 }
 
-.mockup-window:hover {
-    transform: rotateX(2deg) translateY(-5px);
+.mockup-window.app-window:hover {
+    transform: translate(-50%, -55%) rotateX(2deg);
 }
 
-.window-header {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 12px;
+.app-header {
     display: flex;
-    gap: 8px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 16px 12px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.dot {
-    width: 12px;
-    height: 12px;
+.header-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 6px 12px;
+    border-radius: 8px;
+}
+
+.chevron {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.action-icon {
+    font-size: 1rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    background: rgba(255, 255, 255, 0.1);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
 }
 
-.red { background: #ff5f56; }
-.yellow { background: #ffbd2e; }
-.green { background: #27c93f; }
+.action-icon:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.2);
+}
 
-.pastry-ui {
-    padding: 20px;
+.app-content {
+    padding: 8px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 4px;
 }
 
-.search-bar {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 10px 12px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    margin-bottom: 8px;
+.app-row {
     display: flex;
     align-items: center;
-}
-
-.list-item {
-    display: flex;
-    justify-content: space-between;
     padding: 10px 12px;
-    border-radius: 8px;
+    gap: 16px;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.app-row:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.row-shortcut {
+    font-family: monospace;
+    color: #8E8E93; /* macOS shortcut gray */
     font-size: 0.9rem;
-    cursor: default;
+    width: 50px;
+    flex-shrink: 0;
 }
 
-.list-item.active {
-    background: rgba(0, 122, 255, 0.3); /* macOS selection blue tint */
-    color: white;
+.row-content {
+    color: #fff;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.list-item .shortcut {
-    color: var(--text-secondary);
-    font-size: 0.8rem;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 2px 6px;
-    border-radius: 4px;
+.row-content.blurred {
+    filter: blur(4px);
+    opacity: 0.7;
+    user-select: none;
 }
 
-.list-item.active .shortcut {
-    color: white;
+
+/* Help Panel Mockup (Floating) */
+.mockup-window.help-panel {
+    position: absolute;
+    top: 55%;
+    left: 65%; /* Offset to right */
+    width: 280px;
+    background: rgba(40, 40, 42, 0.95); /* Slightly lighter charcoal */
+    border-radius: var(--app-radius);
+    padding: 16px;
+    z-index: 1;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    transform: rotateZ(2deg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.panel-header {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #8E8E93;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+.panel-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 0.85rem;
+    color: #E5E5EA;
+}
+
+.panel-row:last-child {
+    margin-bottom: 0;
+}
+
+.panel-icon {
+    font-size: 1rem;
+    opacity: 0.8;
+    width: 20px;
+    text-align: center;
 }
 
 /* Features Section */
@@ -279,6 +366,7 @@ h1 {
 .feature-card {
     padding: 32px;
     transition: transform 0.3s, background 0.3s;
+    background: rgba(255, 255, 255, 0.03);
 }
 
 .feature-card:hover {
@@ -434,5 +522,26 @@ footer {
     .hero {
         padding-top: 100px;
     }
-}
 
+    .mockup-window.app-window {
+        width: 100%;
+        max-width: 350px;
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        margin: 0 auto;
+    }
+
+    .mockup-window.app-window:hover {
+        transform: none;
+    }
+
+    .mockup-window.help-panel {
+        display: none; /* Hide complex floating panel on mobile for cleaner look */
+    }
+    
+    .hero-visual {
+        height: auto;
+    }
+}

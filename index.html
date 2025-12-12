@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- SF Symbols font simulation or similar for specific icons could be added, but using emojis/svgs for now -->
 </head>
 <body>
     <div class="background-glow"></div>
@@ -35,29 +36,67 @@
                 </div>
             </div>
             <div class="hero-visual">
-                <div class="mockup-window glass">
-                    <div class="window-header">
-                        <div class="dot red"></div>
-                        <div class="dot yellow"></div>
-                        <div class="dot green"></div>
-                    </div>
-                    <div class="window-content">
-                        <!-- Simulated Interface -->
-                        <div class="pastry-ui">
-                            <div class="search-bar">Search clipboard...</div>
-                            <div class="list-item active">
-                                <span class="content">https://tryalcove.com/</span>
-                                <span class="shortcut">⌘1</span>
-                            </div>
-                            <div class="list-item">
-                                <span class="content">Code snippet for MVVM arch...</span>
-                                <span class="shortcut">⌘2</span>
-                            </div>
-                            <div class="list-item">
-                                <span class="content">Meeting notes: 10 AM...</span>
-                                <span class="shortcut">⌘3</span>
-                            </div>
+                <!-- Main App Window (Recents) -->
+                <div class="mockup-window glass app-window">
+                    <div class="app-header">
+                        <div class="header-title">
+                            Recents <span class="chevron">⌄</span>
                         </div>
+                        <div class="header-actions">
+                            <span class="action-icon" title="Clear All">🗑️</span>
+                            <span class="action-icon" title="Settings">⚙️</span>
+                        </div>
+                    </div>
+                    <div class="app-content">
+                        <div class="app-row">
+                            <div class="row-shortcut">⌘ ⌥ 1</div>
+                            <div class="row-content">PastryFeedback.github.io</div>
+                        </div>
+                        <div class="app-row">
+                            <div class="row-shortcut">⌘ ⌥ 2</div>
+                            <div class="row-content blurred">https://github.com/lumennabulsi/Pastry</div>
+                        </div>
+                        <div class="app-row">
+                            <div class="row-shortcut">⌘ ⌥ 3</div>
+                            <div class="row-content">git remote -v</div>
+                        </div>
+                        <div class="app-row">
+                            <div class="row-shortcut">⌘ ⌥ 4</div>
+                            <div class="row-content">pastry-feedback-deploy</div>
+                        </div>
+                        <div class="app-row">
+                            <div class="row-shortcut">⌘ ⌥ 5</div>
+                            <div class="row-content">Username for 'https://github.com': PastryFeedback</div>
+                        </div>
+                         <div class="app-row">
+                            <div class="row-shortcut">⌘ ⌥ 6</div>
+                            <div class="row-content blurred">sensitive-api-key-12345</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Floating Help Panel (Positioned absolutely to overlap) -->
+                <div class="mockup-window glass help-panel">
+                    <div class="panel-header">HELP & SHORTCUTS</div>
+                    <div class="panel-row">
+                        <span class="panel-icon">🕒</span>
+                        <span class="panel-text">Recents update automatically</span>
+                    </div>
+                    <div class="panel-row">
+                        <span class="panel-icon">⌨️</span>
+                        <span class="panel-text">Cmd+Option+1...0 to paste</span>
+                    </div>
+                    <div class="panel-row">
+                        <span class="panel-icon">📁</span>
+                        <span class="panel-text">Create profiles to organize</span>
+                    </div>
+                    <div class="panel-row">
+                        <span class="panel-icon">🗑️</span>
+                        <span class="panel-text">Swipe left or Cmd+D to delete profile</span>
+                    </div>
+                    <div class="panel-row">
+                        <span class="panel-icon">👁️</span>
+                        <span class="panel-text">Right-click to obscure text</span>
                     </div>
                 </div>
             </div>
@@ -143,4 +182,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
