@@ -1,108 +1,260 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Service - Pastry</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" crossorigin="" href="assets/app-BMfBlJcu.css">
+    <style>
+        body {
+            background-color: #1c1917;
+            color: #e7e5e4;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        
+        .text-gradient-pastry {
+            background: linear-gradient(135deg, rgb(179, 77, 230) 0%, rgb(77, 128, 255) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(28, 25, 23, 0.8);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 40;
+            padding: 1.25rem 2rem;
+        }
+        
+        .header-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 12px;
+        }
+        
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            border: 2.5px solid rgba(255, 255, 255, 0.2);
+            padding: 4px;
+            object-fit: contain;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        
+        .home-btn {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+        
+        .home-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Main Content */
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 120px 24px 80px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+        
+        .effective-date {
+            color: #a8a29e;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #d6d3d1;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        p {
+            line-height: 1.7;
+            color: #a8a29e;
+            margin-bottom: 1rem;
+        }
+        
+        ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        li {
+            line-height: 1.7;
+            color: #a8a29e;
+            margin-bottom: 0.5rem;
+        }
+        
+        a {
+            color: rgb(179, 77, 230);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-link {
+            color: #78716c;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .footer-link:hover {
+            color: #d6d3d1;
+        }
+        
+        .footer-text {
+            color: #57534e;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
-    <div class="background-glow"></div>
-    
-    <nav class="navbar glass">
-        <div class="logo">
-            <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 8px;">
-                <img src="images/logo.png" alt="Pastry Logo" class="logo-img"> Pastry
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo-link">
+                <img src="images/logo.png" alt="Pastry Logo" class="logo-img">
+                <span class="logo-text">Pastry</span>
             </a>
+            <a href="index.html" class="home-btn">← Back to Home</a>
         </div>
-        <div class="nav-links">
-            <a href="index.html#features">Features</a>
-            <a href="index.html#install">Install</a>
-            <a href="index.html" class="btn-primary">Home</a>
-        </div>
-    </nav>
+    </header>
 
-    <main class="legal-page">
-        <div class="glass legal-container">
-            <h1>Terms of Service</h1>
-            <p class="effective-date"><strong>Effective Date:</strong> December 12, 2025</p>
+    <main>
+        <h1>Terms of <span class="text-gradient-pastry">Service</span></h1>
+        <p class="effective-date"><strong>Effective Date:</strong> December 12, 2025</p>
 
-            <p>Welcome to Pastry. These Terms of Service (“Terms”) govern your use of the Pastry macOS application (the “App”), operated by Pastry (“we”, “our”, or “us”). By downloading, installing, or using the App, you agree to be bound by these Terms and our Privacy Policy. If you do not agree with these Terms, do not use the App.</p>
+        <p>Welcome to Pastry. These Terms of Service ("Terms") govern your use of the Pastry macOS application (the "App"), operated by Pastry ("we", "our", or "us"). By downloading, installing, or using the App, you agree to be bound by these Terms and our Privacy Policy. If you do not agree with these Terms, do not use the App.</p>
 
-            <h3>1. Eligibility</h3>
-            <p>You must be at least 13 years old to use the App. By using the App, you represent and warrant that you are of legal age and that you have the authority to enter into these Terms.</p>
+        <h3>1. Eligibility</h3>
+        <p>You must be at least 13 years old to use the App. By using the App, you represent and warrant that you are of legal age and that you have the authority to enter into these Terms.</p>
 
-            <h3>2. Changes to Terms</h3>
-            <p>We may modify or update these Terms at any time at our sole discretion. We will notify you of any material changes through the App or by other reasonable means (such as release notes). Your continued use of the App after any such updates constitutes your acceptance of the revised Terms.</p>
+        <h3>2. Changes to Terms</h3>
+        <p>We may modify or update these Terms at any time at our sole discretion. We will notify you of any material changes through the App or by other reasonable means (such as release notes). Your continued use of the App after any such updates constitutes your acceptance of the revised Terms.</p>
 
-            <h3>3. License and Restrictions</h3>
-            <p>We grant you a limited, non-exclusive, non-transferable, revocable license to use the App for personal, non-commercial purposes in accordance with these Terms.</p>
-            <p>You agree not to:</p>
-            <ul>
-                <li>Copy, modify, distribute, sell, lease, or sublicense any part of the App or included software;</li>
-                <li>Reverse-engineer, decompile, or attempt to extract the source code of the App, unless permitted by applicable law;</li>
-                <li>Use the App for any unlawful, harmful, or fraudulent purpose;</li>
-                <li>Interfere with or disrupt the operation of the App or the servers or networks connected to the App.</li>
-            </ul>
+        <h3>3. License and Restrictions</h3>
+        <p>We grant you a limited, non-exclusive, non-transferable, revocable license to use the App for personal, non-commercial purposes in accordance with these Terms.</p>
+        <p>You agree not to:</p>
+        <ul>
+            <li>Copy, modify, distribute, sell, lease, or sublicense any part of the App or included software;</li>
+            <li>Reverse-engineer, decompile, or attempt to extract the source code of the App, unless permitted by applicable law;</li>
+            <li>Use the App for any unlawful, harmful, or fraudulent purpose;</li>
+            <li>Interfere with or disrupt the operation of the App or the servers or networks connected to the App.</li>
+        </ul>
 
-            <h3>4. User Conduct</h3>
-            <p>You agree not to:</p>
-            <ul>
-                <li>Use the App in any way that may interfere with, damage, disable, or overburden our servers or networks;</li>
-                <li>Attempt to gain unauthorized access to the App, other accounts, systems, or networks;</li>
-                <li>Upload or transmit any malicious code, viruses, or harmful software through the App;</li>
-                <li>Violate any applicable local, state, national, or international law or regulation.</li>
-            </ul>
+        <h3>4. User Conduct</h3>
+        <p>You agree not to:</p>
+        <ul>
+            <li>Use the App in any way that may interfere with, damage, disable, or overburden our servers or networks;</li>
+            <li>Attempt to gain unauthorized access to the App, other accounts, systems, or networks;</li>
+            <li>Upload or transmit any malicious code, viruses, or harmful software through the App;</li>
+            <li>Violate any applicable local, state, national, or international law or regulation.</li>
+        </ul>
 
-            <h3>5. Intellectual Property</h3>
-            <p>All content, features, and functionality in the App, including but not limited to text, images, software, code, and design, are the exclusive property of Pastry or its licensors and are protected by intellectual property laws.</p>
-            <p>Except as expressly permitted in these Terms, you may not copy, reproduce, modify, distribute, or create derivative works from any part of the App without our prior written consent.</p>
+        <h3>5. Intellectual Property</h3>
+        <p>All content, features, and functionality in the App, including but not limited to text, images, software, code, and design, are the exclusive property of Pastry or its licensors and are protected by intellectual property laws.</p>
+        <p>Except as expressly permitted in these Terms, you may not copy, reproduce, modify, distribute, or create derivative works from any part of the App without our prior written consent.</p>
 
-            <h3>6. Termination</h3>
-            <p>We reserve the right to suspend or terminate your access to the App at any time, with or without notice, for conduct that we reasonably believe violates these Terms or is otherwise harmful to other users or us.</p>
-            <p>Upon termination, all rights granted to you under these Terms will immediately cease, and you must stop using the App and delete all copies from your devices.</p>
+        <h3>6. Termination</h3>
+        <p>We reserve the right to suspend or terminate your access to the App at any time, with or without notice, for conduct that we reasonably believe violates these Terms or is otherwise harmful to other users or us.</p>
+        <p>Upon termination, all rights granted to you under these Terms will immediately cease, and you must stop using the App and delete all copies from your devices.</p>
 
-            <h3>7. Disclaimer of Warranties</h3>
-            <p>The App is provided on an “as is” and “as available” basis. To the fullest extent permitted by law, we disclaim all warranties, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, and non-infringement. We do not warrant that the App will be uninterrupted, error-free, secure, or free of viruses or other harmful components.</p>
+        <h3>7. Disclaimer of Warranties</h3>
+        <p>The App is provided on an "as is" and "as available" basis. To the fullest extent permitted by law, we disclaim all warranties, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, and non-infringement. We do not warrant that the App will be uninterrupted, error-free, secure, or free of viruses or other harmful components.</p>
 
-            <h3>8. Limitation of Liability</h3>
-            <p>To the fullest extent permitted by law, Pastry and its affiliates, officers, employees, agents, and licensors shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, or goodwill, arising out of or in connection with your use of or inability to use the App.</p>
-            <p>In jurisdictions that do not allow certain limitations of liability, our liability shall be limited to the maximum extent permitted by law.</p>
+        <h3>8. Limitation of Liability</h3>
+        <p>To the fullest extent permitted by law, Pastry and its affiliates, officers, employees, agents, and licensors shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, or goodwill, arising out of or in connection with your use of or inability to use the App.</p>
+        <p>In jurisdictions that do not allow certain limitations of liability, our liability shall be limited to the maximum extent permitted by law.</p>
 
-            <h3>9. Indemnification</h3>
-            <p>You agree to indemnify, defend, and hold harmless Pastry and its affiliates, officers, employees, and agents from and against any claims, liabilities, damages, losses, and expenses (including reasonable legal fees) arising out of or in any way connected with your use of the App or violation of these Terms.</p>
+        <h3>9. Indemnification</h3>
+        <p>You agree to indemnify, defend, and hold harmless Pastry and its affiliates, officers, employees, and agents from and against any claims, liabilities, damages, losses, and expenses (including reasonable legal fees) arising out of or in any way connected with your use of the App or violation of these Terms.</p>
 
-            <h3>10. Governing Law and Dispute Resolution</h3>
-            <p>These Terms shall be governed by and construed in accordance with the laws of the United States, without regard to its conflict of laws principles.</p>
-            <p>Any disputes arising out of or relating to these Terms or the App shall be resolved through binding arbitration or small claims court, unless prohibited by applicable law.</p>
+        <h3>10. Governing Law and Dispute Resolution</h3>
+        <p>These Terms shall be governed by and construed in accordance with the laws of the United States, without regard to its conflict of laws principles.</p>
+        <p>Any disputes arising out of or relating to these Terms or the App shall be resolved through binding arbitration or small claims court, unless prohibited by applicable law.</p>
 
-            <h3>11. Severability</h3>
-            <p>If any provision of these Terms is found to be unlawful, void, or unenforceable, the remaining provisions shall remain in full force and effect.</p>
+        <h3>11. Severability</h3>
+        <p>If any provision of these Terms is found to be unlawful, void, or unenforceable, the remaining provisions shall remain in full force and effect.</p>
 
-            <h3>12. Entire Agreement</h3>
-            <p>These Terms, together with our Privacy Policy, constitute the entire agreement between you and Pastry regarding your use of the App and supersede any prior agreements or understandings.</p>
+        <h3>12. Entire Agreement</h3>
+        <p>These Terms, together with our Privacy Policy, constitute the entire agreement between you and Pastry regarding your use of the App and supersede any prior agreements or understandings.</p>
 
-            <h3>13. Contact Us</h3>
-            <p>If you have any questions or concerns about these Terms, please contact us at:</p>
-            <p>📧 Email: <a href="mailto:pastryfeedback10@gmail.com">pastryfeedback10@gmail.com</a></p>
-        </div>
+        <h3>13. Contact Us</h3>
+        <p>If you have any questions or concerns about these Terms, please contact us at:</p>
+        <p>📧 Email: <a href="mailto:pastryfeedback10@gmail.com">pastryfeedback10@gmail.com</a></p>
     </main>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img src="images/logo.png" alt="Pastry Logo" class="footer-logo-img"> Pastry
-            </div>
-            <p>Designed with love for macOS.</p>
-            <div class="footer-links">
-                <a href="terms.html">Terms of Service</a>
-                <a href="privacy.html">Privacy Policy</a>
-            </div>
+        <div class="footer-links">
+            <a href="privacy.html" class="footer-link">Privacy Policy</a>
+            <a href="terms.html" class="footer-link">Terms of Service</a>
+            <a href="mailto:PastryFeedback10@gmail.com" class="footer-link">Contact</a>
         </div>
+        <p class="footer-text">© 2025 Pastry. Made with 🥐</p>
     </footer>
 </body>
 </html>
-
