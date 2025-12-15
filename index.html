@@ -16,6 +16,29 @@
     <link rel="stylesheet" href="assets/HomePage-B3fiaPBv.css">
     
     <style>
+        /* CSS Reset / Overrides for missing Tailwind classes */
+        body {
+            background-color: #1c1917; /* stone-900 */
+            color: #f3e8ff; /* purple-100ish */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        .dark body {
+            background-color: #1c1917;
+            color: #f3e8ff;
+        }
+
+        /* Typography Colors */
+        .text-primary { color: #ffffff; }
+        .text-secondary { color: #a8a29e; } /* stone-400 */
+        .dark .text-secondary { color: #d6d3d1; } /* stone-300 */
+
+        /* Spacing Utilities */
+        .gap-large { gap: 3rem; }
+        .gap-medium { gap: 1.5rem; }
+        .mb-large { margin-bottom: 2rem; }
+        .mb-medium { margin-bottom: 1rem; }
+        
         /* Pastry App Window Styles */
         :root {
             --app-radius: 12px;
@@ -30,10 +53,6 @@
             color: transparent;
         }
         
-        .bg-gradient-pastry {
-            background: linear-gradient(135deg, rgb(179, 77, 230) 0%, rgb(77, 128, 255) 100%);
-        }
-
         .mockup-window.app-window {
             position: absolute;
             top: 50%;
@@ -41,16 +60,15 @@
             transform: translate(-50%, -50%) rotateX(5deg);
             width: 380px;
             /* Ensure high contrast against the dark background */
-            background: rgba(35, 35, 38, 0.95);
+            background: rgba(30, 30, 35, 0.95);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: var(--app-radius);
             box-shadow: 0 50px 100px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(0,0,0,0.5);
             overflow: hidden;
-            z-index: 50; /* Higher z-index to ensure visibility */
+            z-index: 50; 
             transition: transform 0.3s ease;
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         .mockup-window.app-window:hover {
@@ -174,39 +192,97 @@
             position: absolute;
             top: 0;
             left: 0;
-            pointer-events: none; /* Let clicks pass through if needed, but we handle hover on parent */
+            pointer-events: none;
+            z-index: 10;
         }
         
         .particle-container {
             position: relative;
-            height: 4.5rem;
+            height: 6rem;
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
         }
+
+        .ink-text {
+            position: absolute;
+            font-family: monospace;
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: bold;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0; /* Hidden by default */
+            transition: opacity 0.3s ease;
+        }
+
+        /* Reveal text on hover of container */
+        .particle-container:hover .ink-text {
+            opacity: 1;
+        }
+        
+        /* Layout Fixes */
+        .feature-grid-layout {
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 4rem; /* Vertical gap */
+        }
+        
+        @media (min-width: 640px) {
+            .feature-grid-layout {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 2rem;
+            }
+        }
+
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            justify-content: flex-start;
+        }
+
+        .footer-link-container {
+            display: flex;
+            justify-content: center;
+            gap: 3rem; /* 48px */
+            margin-bottom: 2rem;
+        }
+        
+        .footer-link {
+            color: #78716c;
+            transition: color 0.2s;
+            text-decoration: none;
+        }
+        
+        .footer-link:hover {
+            color: #d6d3d1;
+        }
+
     </style>
 </head>
 
-<body class="bg-stone-900 text-stone-800 dark:text-purple-100">
+<body class="dark">
     <div id="app">
         <section class="flex min-h-svh flex-col">
             <!-- Header -->
-            <header class="transition-shadows fixed top-0 z-40 flex w-full justify-center px-8 py-5 duration-300 sm:py-7 bg-stone-900/80 backdrop-blur-xl border-b border-white/5">
+            <header style="background-color: rgba(28, 25, 23, 0.8); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(255,255,255,0.05);" class="transition-shadows fixed top-0 z-40 flex w-full justify-center px-8 py-5 duration-300 sm:py-7">
                 <div class="flex w-full max-w-screen-3xl justify-between">
                     <div class="flex items-center opacity-0 delay-75 animate-fadeIn" style="animation-fill-mode: forwards;">
                         <a href="/" class="group flex items-center outline-none" tabindex="-1" aria-label="Go home">
                             <div class="relative mr-3 h-10 w-10 overflow-hidden rounded-xl border-[2.5px] border-stone-800 dark:border-white/20 p-1">
                                 <img src="images/logo.png" alt="Pastry Logo" class="w-full h-full object-contain">
                             </div>
-                            <div class="text-2xl font-bold">Pastry</div>
+                            <div class="text-2xl font-bold text-primary">Pastry</div>
                         </a>
-                        <a href="#" class="group ml-[6.5px] mt-2.5 flex items-center justify-center self-start whitespace-nowrap rounded-lg border-[1.5px] border-purple-950/15 bg-purple-950/[0.03] px-1 py-px text-center text-xs font-bold text-purple-950/60 outline-none dark:border-purple-100/10 dark:bg-purple-100/[0.04] dark:text-purple-100/50" rel="noopener noreferrer" tabindex="-1">v1.0</a>
+                        <a href="#" style="border-color: rgba(147, 51, 234, 0.2); background-color: rgba(147, 51, 234, 0.05); color: rgba(216, 180, 254, 0.8);" class="group ml-[6.5px] mt-2.5 flex items-center justify-center self-start whitespace-nowrap rounded-lg border-[1.5px] px-1 py-px text-center text-xs font-bold outline-none" rel="noopener noreferrer" tabindex="-1">v1.0</a>
                     </div>
                     
                     <div class="flex items-center space-x-7 opacity-0 delay-75 animate-fadeIn" style="animation-fill-mode: forwards;">
                          <!-- Download Button -->
-                        <a class="group relative inline-flex max-h-[3.75rem] items-center justify-center rounded-2xl px-5 py-4 text-lg font-bold outline-none transition duration-300 focus:ring-2 focus:ring-purple-300/90 bg-white/5 pl-[3.25rem] sm:flex" href="#" aria-label="Download for Mac">
+                        <a class="group relative inline-flex max-h-[3.75rem] items-center justify-center rounded-2xl px-5 py-4 text-lg font-bold outline-none transition duration-300 focus:ring-2 focus:ring-purple-300/90 bg-white/5 pl-[3.25rem] sm:flex text-primary" href="#" aria-label="Download for Mac">
                             <div class="ease absolute left-5 translate-x-0 opacity-100 transition duration-300 group-hover:-translate-x-full group-hover:scale-x-50 group-hover:opacity-0 group-hover:blur-sm">
                                 <svg class="h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.37 7.648c-.114.088-2.11 1.213-2.11 3.715 0 2.894 2.54 3.918 2.616 3.944-.011.062-.403 1.402-1.34 2.767-.834 1.201-1.706 2.4-3.032 2.4s-1.667-.77-3.198-.77c-1.492 0-2.022.796-3.235.796-1.214 0-2.06-1.112-3.033-2.477C4.911 16.42 4 13.93 4 11.566c0-3.791 2.465-5.802 4.891-5.802 1.29 0 2.364.847 3.173.847.77 0 1.972-.897 3.438-.897.556 0 2.553.05 3.867 1.934Zm-4.564-3.54c.607-.719 1.036-1.718 1.036-2.716 0-.138-.012-.279-.037-.392-.987.037-2.161.657-2.87 1.478-.555.632-1.074 1.63-1.074 2.643 0 .152.026.304.037.353.063.011.164.025.266.025.885 0 1.998-.593 2.642-1.39Z"></path></svg>
                             </div>
@@ -223,16 +299,16 @@
                 <section class="flex w-full max-w-screen-xl flex-col items-center">
                     <!-- Hero Text -->
                     <section class="mb-14 w-full sm:mb-20 xl:w-4/5 xl:max-w-screen-lg text-center">
-                        <h1 class="relative text-center text-5xl font-bold leading-[1.05] tracking-tight opacity-0 delay-50 sm:text-8xl sm:leading-none animate-fadeIn" style="animation-fill-mode: forwards;">
+                        <h1 class="relative text-center text-5xl font-bold leading-[1.05] tracking-tight opacity-0 delay-50 sm:text-8xl sm:leading-none animate-fadeIn text-primary" style="animation-fill-mode: forwards;">
                             Clipboard Manager<br>
                             for <span class="relative text-gradient-pastry">Mac</span>
                         </h1>
-                        <p class="mt-6 text-xl text-stone-400 dark:text-purple-100/60 opacity-0 delay-300 animate-fadeIn" style="animation-fill-mode: forwards;">
+                        <p class="mt-6 text-xl text-secondary opacity-0 delay-300 animate-fadeIn" style="animation-fill-mode: forwards;">
                             Minimalistic. Highly Polished. Pastry.
                         </p>
                     </section>
 
-                    <!-- Interactive Demo Section (Explicitly visible) -->
+                    <!-- Interactive Demo Section -->
                     <section class="isolate flex w-full select-none flex-col items-center px-0 lg:px-8 animate-fadeIn" style="animation-fill-mode: forwards;">
                         <div class="relative h-[600px] w-full overflow-hidden rounded-3xl sm:h-[600px] shadow-2xl">
                             <!-- Wallpaper Background -->
@@ -287,67 +363,65 @@
 
                     <!-- Features Grid -->
                     <section class="isolate mt-32 w-full opacity-0 delay-[800ms] sm:mt-32 animate-fadeIn" style="animation-fill-mode: forwards;">
-                        <div class="mx-auto grid w-full gap-x-12 gap-y-20 tracking-tight sm:max-w-screen-lg sm:grid-cols-3">
+                        <div class="feature-grid-layout">
                             
-                            <!-- Feature 1: Smart History (Icon: Instant Notifications/Bell) -->
-                            <div class="group flex flex-col items-center justify-start text-center">
-                                <div class="mb-8 h-[6rem] flex items-center justify-center">
-                                    <svg class="h-[5rem] w-[5rem] fill-current" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12.953 26.14c6.54 0 11.953-5.425 11.953-11.953 0-1.042-.14-2.05-.422-3.011a5.082 5.082 0 0 1-1.922.457c.223.808.352 1.676.352 2.555a9.915 9.915 0 0 1-9.96 9.96 9.913 9.913 0 0 1-9.95-9.96c0-5.532 4.406-9.961 9.937-9.961 1.29 0 2.508.234 3.633.68.117-.669.363-1.29.703-1.84-1.336-.54-2.8-.833-4.336-.833C6.414 2.234 1 7.648 1 14.188 1 20.715 6.426 26.14 12.953 26.14Zm9.129-16.019c2.215 0 4.066-1.828 4.066-4.055C26.148 3.828 24.297 2 22.082 2c-2.227 0-4.066 1.828-4.066 4.066 0 2.227 1.84 4.055 4.066 4.055Z"></path><path class="origin-[47%_53%] transition duration-350 group-hover:rotate-180" d="M13.762 14.633c0 .469-.364.82-.82.82a.8.8 0 0 1-.81-.823V6.734c0-.457.352-.808.81-.808.456 0 .82.351.82.808v7.899Z"></path><path class="origin-[47%_53%] transition duration-300 group-hover:rotate-45" d="M12.941 15.453H6.824a.801.801 0 0 1-.82-.82c0-.457.351-.809.82-.809h6.116c.46 0 .822.34.822.809 0 .469-.364.82-.82.82Z"></path></svg>
+                            <!-- Feature 1 -->
+                            <div class="feature-item">
+                                <div class="mb-medium h-[6rem] flex items-center justify-center">
+                                    <svg class="h-[5rem] w-[5rem] fill-current text-white" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12.953 26.14c6.54 0 11.953-5.425 11.953-11.953 0-1.042-.14-2.05-.422-3.011a5.082 5.082 0 0 1-1.922.457c.223.808.352 1.676.352 2.555a9.915 9.915 0 0 1-9.96 9.96 9.913 9.913 0 0 1-9.95-9.96c0-5.532 4.406-9.961 9.937-9.961 1.29 0 2.508.234 3.633.68.117-.669.363-1.29.703-1.84-1.336-.54-2.8-.833-4.336-.833C6.414 2.234 1 7.648 1 14.188 1 20.715 6.426 26.14 12.953 26.14Zm9.129-16.019c2.215 0 4.066-1.828 4.066-4.055C26.148 3.828 24.297 2 22.082 2c-2.227 0-4.066 1.828-4.066 4.066 0 2.227 1.84 4.055 4.066 4.055Z"></path><path class="origin-[47%_53%] transition duration-350 group-hover:rotate-180" d="M13.762 14.633c0 .469-.364.82-.82.82a.8.8 0 0 1-.81-.823V6.734c0-.457.352-.808.81-.808.456 0 .82.351.82.808v7.899Z"></path><path class="origin-[47%_53%] transition duration-300 group-hover:rotate-45" d="M12.941 15.453H6.824a.801.801 0 0 1-.82-.82c0-.457.351-.809.82-.809h6.116c.46 0 .822.34.822.809 0 .469-.364.82-.82.82Z"></path></svg>
                                 </div>
-                                <h2 class="text-2xl font-bold mb-4">Smart<br>History</h2>
-                                <p class="text-base text-stone-400 dark:text-gray-400 leading-relaxed max-w-[250px]">Automatically captures your last 10 clips.</p>
+                                <h2 class="text-2xl font-bold mb-4 text-primary">Smart<br>History</h2>
+                                <p class="text-secondary leading-relaxed max-w-[250px]">Automatically captures your last 10 clips.</p>
                             </div>
 
-                            <!-- Feature 2: Global Hotkeys (Icon: Swipe gestures/Interaction) -->
-                            <div class="group flex flex-col items-center justify-start text-center">
-                                <div class="mb-8 h-[6rem] flex items-center justify-center">
-                                    <svg class="h-[5rem] w-[5rem] overflow-visible fill-current" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path class="origin-[75%_75%] transition duration-350 group-hover:-rotate-[40deg]" d="M21.695 25.288c4.653-1.687 6.633-5.953 4.758-11.109l-.867-2.402c-.926-2.543-2.672-3.586-4.723-2.871-.55-.715-1.394-.961-2.308-.633-.34.129-.633.305-.914.515-.598-.773-1.524-1.054-2.485-.714a3.225 3.225 0 0 0-.738.398l-1.336-3.656c-.504-1.395-1.77-1.98-3.07-1.512-1.313.48-1.899 1.734-1.395 3.129l3.34 9.188c.023.058.012.105-.047.128-.035.024-.082 0-.117-.035l-1.371-1.5c-.68-.726-1.5-.949-2.285-.668-1.067.399-1.758 1.418-1.313 2.625.106.34.34.75.61 1.09l3.925 4.746c2.977 3.586 6.446 4.7 10.336 3.281Zm-.504-1.535c-3.07 1.125-5.941.551-8.66-2.718l-3.926-4.723c-.117-.14-.199-.27-.269-.469-.14-.375.023-.809.469-.973.375-.128.68.012.972.329l2.72 2.8c.444.47.843.516 1.241.375.457-.164.645-.656.457-1.16L10.047 5.8c-.176-.469.035-.914.492-1.078.445-.164.879.059 1.043.527l2.965 8.145c.14.387.574.562.96.422.376-.14.587-.551.446-.926l-1.066-2.941c.152-.153.386-.305.597-.387.551-.2 1.008.047 1.22.621l.937 2.566c.14.399.586.551.96.41a.713.713 0 0 0 .434-.925l-.762-2.086c.165-.153.387-.305.61-.387.55-.2 1.008.047 1.219.621l.62 1.711c.153.41.587.563.962.422a.723.723 0 0 0 .445-.926l-.457-1.265c.973-.352 1.898.445 2.531 2.203l.738 2.004c1.606 4.43.153 7.804-3.75 9.222Z"></path><g class="transition duration-200 group-hover:opacity-0 group-hover:delay-50"><path class="fill-transparent stroke-current stroke-[1.5px] transition-all duration-350 group-hover:duration-250 group-hover:[stroke-dashoffset:12]" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="12" stroke-dashoffset="0" d="M1.75 16.719s-.084-3.054 1.281-5.688C4.35 8.488 6.391 6.906 7 6.687"></path></g></svg>
+                            <!-- Feature 2 -->
+                            <div class="feature-item">
+                                <div class="mb-medium h-[6rem] flex items-center justify-center">
+                                    <svg class="h-[5rem] w-[5rem] overflow-visible fill-current text-white" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path class="origin-[75%_75%] transition duration-350 group-hover:-rotate-[40deg]" d="M21.695 25.288c4.653-1.687 6.633-5.953 4.758-11.109l-.867-2.402c-.926-2.543-2.672-3.586-4.723-2.871-.55-.715-1.394-.961-2.308-.633-.34.129-.633.305-.914.515-.598-.773-1.524-1.054-2.485-.714a3.225 3.225 0 0 0-.738.398l-1.336-3.656c-.504-1.395-1.77-1.98-3.07-1.512-1.313.48-1.899 1.734-1.395 3.129l3.34 9.188c.023.058.012.105-.047.128-.035.024-.082 0-.117-.035l-1.371-1.5c-.68-.726-1.5-.949-2.285-.668-1.067.399-1.758 1.418-1.313 2.625.106.34.34.75.61 1.09l3.925 4.746c2.977 3.586 6.446 4.7 10.336 3.281Zm-.504-1.535c-3.07 1.125-5.941.551-8.66-2.718l-3.926-4.723c-.117-.14-.199-.27-.269-.469-.14-.375.023-.809.469-.973.375-.128.68.012.972.329l2.72 2.8c.444.47.843.516 1.241.375.457-.164.645-.656.457-1.16L10.047 5.8c-.176-.469.035-.914.492-1.078.445-.164.879.059 1.043.527l2.965 8.145c.14.387.574.562.96.422.376-.14.587-.551.446-.926l-1.066-2.941c.152-.153.386-.305.597-.387.551-.2 1.008.047 1.22.621l.937 2.566c.14.399.586.551.96.41a.713.713 0 0 0 .434-.925l-.762-2.086c.165-.153.387-.305.61-.387.55-.2 1.008.047 1.219.621l.62 1.711c.153.41.587.563.962.422a.723.723 0 0 0 .445-.926l-.457-1.265c.973-.352 1.898.445 2.531 2.203l.738 2.004c1.606 4.43.153 7.804-3.75 9.222Z"></path><g class="transition duration-200 group-hover:opacity-0 group-hover:delay-50"><path class="fill-transparent stroke-current stroke-[1.5px] transition-all duration-350 group-hover:duration-250 group-hover:[stroke-dashoffset:12]" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="12" stroke-dashoffset="0" d="M1.75 16.719s-.084-3.054 1.281-5.688C4.35 8.488 6.391 6.906 7 6.687"></path></g></svg>
                                 </div>
-                                <h2 class="text-2xl font-bold mb-4">Global<br>Hotkeys</h2>
-                                <p class="text-base text-stone-400 dark:text-gray-400 leading-relaxed max-w-[250px]">Cmd+Opt+1 through 0 for instant paste.</p>
+                                <h2 class="text-2xl font-bold mb-4 text-primary">Global<br>Hotkeys</h2>
+                                <p class="text-secondary leading-relaxed max-w-[250px]">Cmd+Opt+1 through 0 for instant paste.</p>
                             </div>
 
                             <!-- Feature 3: Invisible Ink (Icon: Particle Canvas) -->
-                            <div class="group flex flex-col items-center justify-start text-center">
-                                <div class="mb-8 h-[6rem] flex items-center justify-center w-full relative">
+                            <div class="feature-item">
+                                <div class="mb-medium h-[6rem] flex items-center justify-center w-full relative">
                                     <!-- Canvas container -->
                                     <div id="invisible-ink-container" class="particle-container">
                                         <!-- Text that will be obscured/revealed -->
-                                        <div style="position: absolute; font-family: monospace; font-size: 1.5rem; color: rgba(255,255,255,0.9); font-weight: bold; pointer-events: none; z-index: 1;">
-                                            123456
-                                        </div>
+                                        <div class="ink-text">123456</div>
                                         <canvas id="particle-canvas" width="200" height="100"></canvas>
                                     </div>
                                 </div>
-                                <h2 class="text-2xl font-bold mb-4">Invisible<br>Ink</h2>
-                                <p class="text-base text-stone-400 dark:text-gray-400 leading-relaxed max-w-[250px]">Right-click to obscure sensitive text.</p>
+                                <h2 class="text-2xl font-bold mb-4 text-primary">Invisible<br>Ink</h2>
+                                <p class="text-secondary leading-relaxed max-w-[250px]">Right-click to obscure sensitive text.</p>
                             </div>
 
-                            <!-- Feature 4: Custom Profiles (Icon: Customizable HUDs) -->
-                            <div class="group flex flex-col items-center justify-start text-center">
-                                <div class="mb-8 h-[6rem] flex items-center justify-center">
-                                    <svg class="h-[5rem] w-[5rem] fill-current" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3.67969,19.12496 L6.64453,19.12496 L6.64453,17.23826 L3.70312,17.23826 C2.53125,17.23826 1.88672,16.60546 1.88672,15.38676 L1.88672,3.73828 C1.88672,2.51953 2.53125,1.88672 3.70312,1.88672 L15.4102,1.88672 C16.5703,1.88672 17.2266,2.51953 17.2266,3.73828 L17.2266,6.30468 L19.1133,6.30468 L19.1133,3.63281 C19.1133,1.21875 17.8828,0 15.4453,0 L3.67969,0 C1.21875,0 0,1.21875 0,3.63281 L0,15.49216 C0,17.90626 1.21875,19.12496 3.67969,19.12496 Z M9.3398,18.15236 C9.3398,17.73046 9.6797,17.39066 10.0781,17.39066 L20.3672,17.39066 C20.8125,17.39066 21.1523,17.73046 21.1523,18.15236 C21.1523,18.59766 20.8125,18.93746 20.3672,18.93746 L10.0781,18.93746 C9.6797,18.93746 9.3398,18.59766 9.3398,18.15236 Z M9.3398,11.88276 C9.3398,11.46096 9.6797,11.12106 10.125,11.12106 L20.4141,11.12106 C20.8125,11.12106 21.1523,11.46096 21.1523,11.88276 C21.1523,12.31636 20.8125,12.66796 20.4141,12.66796 L10.125,12.66796 C9.6797,12.66796 9.3398,12.31636 9.3398,11.88276 Z M9.3633,24.55076 L21.1289,24.55076 C23.5664,24.55076 24.7969,23.33206 24.7969,20.91796 L24.7969,9.05856 C24.7969,6.64453 23.5664,5.42578 21.1289,5.42578 L9.3633,5.42578 C6.90234,5.42578 5.68359,6.63281 5.68359,9.05856 L5.68359,20.91796 C5.68359,23.33206 6.90234,24.55076 9.3633,24.55076 Z M9.3867,22.66406 C8.2266,22.66406 7.57031,22.03126 7.57031,20.81246 L7.57031,9.16406 C7.57031,7.94531 8.2266,7.3125 9.3867,7.3125 L21.0938,7.3125 C22.2539,7.3125 22.9102,7.94531 22.9102,9.16406 L22.9102,20.81246 C22.9102,22.03126 22.2539,22.66406 21.0938,22.66406 L9.3867,22.66406 Z"></path><path class="origin-center transition duration-300 group-hover:-translate-x-[3.75px]" d="M17.0859,14.26176 C18.3867,14.26176 19.4531,13.19536 19.4531,11.88276 C19.4531,10.58206 18.3867,9.51566 17.0859,9.51566 C15.7734,9.51566 14.707,10.58206 14.707,11.88276 C14.707,13.19536 15.7734,14.26176 17.0859,14.26176 Z"></path><path class="origin-center transition duration-300 group-hover:translate-x-[3.75px]" d="M13.4062,20.53126 C14.7305,20.53126 15.7969,19.46486 15.7969,18.15236 C15.7969,16.85156 14.7305,15.78516 13.4062,15.78516 C12.1055,15.78516 11.0391,16.85156 11.0391,18.15236 C11.0391,19.46486 12.1055,20.53126 13.4062,20.53126 Z"></path></svg>
+                            <!-- Feature 4 -->
+                            <div class="feature-item">
+                                <div class="mb-medium h-[6rem] flex items-center justify-center">
+                                    <svg class="h-[5rem] w-[5rem] fill-current text-white" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3.67969,19.12496 L6.64453,19.12496 L6.64453,17.23826 L3.70312,17.23826 C2.53125,17.23826 1.88672,16.60546 1.88672,15.38676 L1.88672,3.73828 C1.88672,2.51953 2.53125,1.88672 3.70312,1.88672 L15.4102,1.88672 C16.5703,1.88672 17.2266,2.51953 17.2266,3.73828 L17.2266,6.30468 L19.1133,6.30468 L19.1133,3.63281 C19.1133,1.21875 17.8828,0 15.4453,0 L3.67969,0 C1.21875,0 0,1.21875 0,3.63281 L0,15.49216 C0,17.90626 1.21875,19.12496 3.67969,19.12496 Z M9.3398,18.15236 C9.3398,17.73046 9.6797,17.39066 10.0781,17.39066 L20.3672,17.39066 C20.8125,17.39066 21.1523,17.73046 21.1523,18.15236 C21.1523,18.59766 20.8125,18.93746 20.3672,18.93746 L10.0781,18.93746 C9.6797,18.93746 9.3398,18.59766 9.3398,18.15236 Z M9.3398,11.88276 C9.3398,11.46096 9.6797,11.12106 10.125,11.12106 L20.4141,11.12106 C20.8125,11.12106 21.1523,11.46096 21.1523,11.88276 C21.1523,12.31636 20.8125,12.66796 20.4141,12.66796 L10.125,12.66796 C9.6797,12.66796 9.3398,12.31636 9.3398,11.88276 Z M9.3633,24.55076 L21.1289,24.55076 C23.5664,24.55076 24.7969,23.33206 24.7969,20.91796 L24.7969,9.05856 C24.7969,6.64453 23.5664,5.42578 21.1289,5.42578 L9.3633,5.42578 C6.90234,5.42578 5.68359,6.63281 5.68359,9.05856 L5.68359,20.91796 C5.68359,23.33206 6.90234,24.55076 9.3633,24.55076 Z M9.3867,22.66406 C8.2266,22.66406 7.57031,22.03126 7.57031,20.81246 L7.57031,9.16406 C7.57031,7.94531 8.2266,7.3125 9.3867,7.3125 L21.0938,7.3125 C22.2539,7.3125 22.9102,7.94531 22.9102,9.16406 L22.9102,20.81246 C22.9102,22.03126 22.2539,22.66406 21.0938,22.66406 L9.3867,22.66406 Z"></path><path class="origin-center transition duration-300 group-hover:-translate-x-[3.75px]" d="M17.0859,14.26176 C18.3867,14.26176 19.4531,13.19536 19.4531,11.88276 C19.4531,10.58206 18.3867,9.51566 17.0859,9.51566 C15.7734,9.51566 14.707,10.58206 14.707,11.88276 C14.707,13.19536 15.7734,14.26176 17.0859,14.26176 Z"></path><path class="origin-center transition duration-300 group-hover:translate-x-[3.75px]" d="M13.4062,20.53126 C14.7305,20.53126 15.7969,19.46486 15.7969,18.15236 C15.7969,16.85156 14.7305,15.78516 13.4062,15.78516 C12.1055,15.78516 11.0391,16.85156 11.0391,18.15236 C11.0391,19.46486 12.1055,20.53126 13.4062,20.53126 Z"></path></svg>
                                 </div>
-                                <h2 class="text-2xl font-bold mb-4">Custom<br>Profiles</h2>
-                                <p class="text-base text-stone-400 dark:text-gray-400 leading-relaxed max-w-[250px]">Organize snippets into named folders.</p>
+                                <h2 class="text-2xl font-bold mb-4 text-primary">Custom<br>Profiles</h2>
+                                <p class="text-secondary leading-relaxed max-w-[250px]">Organize snippets into named folders.</p>
                             </div>
 
-                            <!-- Feature 5: Private & Secure (Icon: Lock Screen Widgets/Lock) -->
-                            <div class="group flex flex-col items-center justify-start text-center">
-                                <div class="mb-8 h-[6rem] flex items-center justify-center">
-                                    <svg class="h-[5rem] w-[5rem] fill-current" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3.68 24.574h20.273c2.461 0 3.68-1.207 3.68-3.62V6.632c0-2.414-1.219-3.633-3.68-3.633H3.68C1.23 3 0 4.219 0 6.633v14.32c0 2.414 1.23 3.621 3.68 3.621Zm.023-1.887c-1.172 0-1.816-.62-1.816-1.84V6.739c0-1.218.644-1.851 1.816-1.851H23.93c1.16 0 1.816.633 1.816 1.851v14.11c0 1.218-.656 1.84-1.816 1.84H3.703Z"></path><path class="origin-[55%_50%] transition duration-300 group-hover:-scale-x-100" d="M17.027 11.074v1.395c0 .378-.227.601-.609.601-.388 0-.61-.232-.61-.613v-1.512c0-1.37-.796-2.285-1.98-2.285-1.195 0-1.98.914-1.98 2.285v1.512c0 .381-.218.613-.61.613-.386 0-.61-.223-.61-.601v-1.395c0-2.156 1.29-3.597 3.2-3.597 1.91 0 3.2 1.441 3.2 3.597Z"></path><path class="origin-center transition duration-300 group-hover:-translate-x-px" d="M10.793 19.688c-.82 0-1.207-.41-1.207-1.29v-4.664c0-.82.34-1.218 1.043-1.265h6.398c.692.047 1.032.445 1.032 1.265v4.664c0 .88-.387 1.29-1.196 1.29h-6.07Z"></path></svg>
+                            <!-- Feature 5 -->
+                            <div class="feature-item">
+                                <div class="mb-medium h-[6rem] flex items-center justify-center">
+                                    <svg class="h-[5rem] w-[5rem] fill-current text-white" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3.68 24.574h20.273c2.461 0 3.68-1.207 3.68-3.62V6.632c0-2.414-1.219-3.633-3.68-3.633H3.68C1.23 3 0 4.219 0 6.633v14.32c0 2.414 1.23 3.621 3.68 3.621Zm.023-1.887c-1.172 0-1.816-.62-1.816-1.84V6.739c0-1.218.644-1.851 1.816-1.851H23.93c1.16 0 1.816.633 1.816 1.851v14.11c0 1.218-.656 1.84-1.816 1.84H3.703Z"></path><path class="origin-[55%_50%] transition duration-300 group-hover:-scale-x-100" d="M17.027 11.074v1.395c0 .378-.227.601-.609.601-.388 0-.61-.232-.61-.613v-1.512c0-1.37-.796-2.285-1.98-2.285-1.195 0-1.98.914-1.98 2.285v1.512c0 .381-.218.613-.61.613-.386 0-.61-.223-.61-.601v-1.395c0-2.156 1.29-3.597 3.2-3.597 1.91 0 3.2 1.441 3.2 3.597Z"></path><path class="origin-center transition duration-300 group-hover:-translate-x-px" d="M10.793 19.688c-.82 0-1.207-.41-1.207-1.29v-4.664c0-.82.34-1.218 1.043-1.265h6.398c.692.047 1.032.445 1.032 1.265v4.664c0 .88-.387 1.29-1.196 1.29h-6.07Z"></path></svg>
                                 </div>
-                                <h2 class="text-2xl font-bold mb-4">Private &<br>Secure</h2>
-                                <p class="text-base text-stone-400 dark:text-gray-400 leading-relaxed max-w-[250px]">Data stays local. No cloud syncing.</p>
+                                <h2 class="text-2xl font-bold mb-4 text-primary">Private &<br>Secure</h2>
+                                <p class="text-secondary leading-relaxed max-w-[250px]">Data stays local. No cloud syncing.</p>
                             </div>
 
-                             <!-- Feature 6: Native Feel (Icon: Blazing Fast/Bolt) -->
-                             <div class="group flex flex-col items-center justify-start text-center">
-                                <div class="mb-8 h-[6rem] flex items-center justify-center">
-                                    <svg class="h-[5rem] w-[5rem] overflow-visible fill-current" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path class="origin-[50%_40%] scale-[0.25] opacity-0 blur-sm transition duration-300 group-hover:-translate-x-1 group-hover:-translate-y-2 group-hover:scale-50 group-hover:opacity-100 group-hover:blur-none" d="M6 15.5402C6 15.9972 6.35156 16.3371 6.84375 16.3371H13.4648L9.97266 25.8293C9.51562 27.0363 10.7695 27.6808 11.5547 26.6965L22.207 13.384C22.4062 13.1379 22.5117 12.9035 22.5117 12.634C22.5117 12.1887 22.1602 11.8371 21.668 11.8371H15.0469L18.5391 2.34491C18.9961 1.13787 17.7422 0.493343 16.957 1.48944L6.30469 14.7902C6.10547 15.048 6 15.2824 6 15.5402Z"></path><path class="origin-center transition duration-300 group-hover:translate-x-1 group-hover:delay-100" d="M6 15.5402C6 15.9972 6.35156 16.3371 6.84375 16.3371H13.4648L9.97266 25.8293C9.51562 27.0363 10.7695 27.6808 11.5547 26.6965L22.207 13.384C22.4062 13.1379 22.5117 12.9035 22.5117 12.634C22.5117 12.1887 22.1602 11.8371 21.668 11.8371H15.0469L18.5391 2.34491C18.9961 1.13787 17.7422 0.493343 16.957 1.48944L6.30469 14.7902C6.10547 15.048 6 15.2824 6 15.5402Z"></path></svg>
+                             <!-- Feature 6 -->
+                             <div class="feature-item">
+                                <div class="mb-medium h-[6rem] flex items-center justify-center">
+                                    <svg class="h-[5rem] w-[5rem] overflow-visible fill-current text-white" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path class="origin-[50%_40%] scale-[0.25] opacity-0 blur-sm transition duration-300 group-hover:-translate-x-1 group-hover:-translate-y-2 group-hover:scale-50 group-hover:opacity-100 group-hover:blur-none" d="M6 15.5402C6 15.9972 6.35156 16.3371 6.84375 16.3371H13.4648L9.97266 25.8293C9.51562 27.0363 10.7695 27.6808 11.5547 26.6965L22.207 13.384C22.4062 13.1379 22.5117 12.9035 22.5117 12.634C22.5117 12.1887 22.1602 11.8371 21.668 11.8371H15.0469L18.5391 2.34491C18.9961 1.13787 17.7422 0.493343 16.957 1.48944L6.30469 14.7902C6.10547 15.048 6 15.2824 6 15.5402Z"></path><path class="origin-center transition duration-300 group-hover:translate-x-1 group-hover:delay-100" d="M6 15.5402C6 15.9972 6.35156 16.3371 6.84375 16.3371H13.4648L9.97266 25.8293C9.51562 27.0363 10.7695 27.6808 11.5547 26.6965L22.207 13.384C22.4062 13.1379 22.5117 12.9035 22.5117 12.634C22.5117 12.1887 22.1602 11.8371 21.668 11.8371H15.0469L18.5391 2.34491C18.9961 1.13787 17.7422 0.493343 16.957 1.48944L6.30469 14.7902C6.10547 15.048 6 15.2824 6 15.5402Z"></path></svg>
                                 </div>
-                                <h2 class="text-2xl font-bold mb-4">Native<br>Feel</h2>
-                                <p class="text-base text-stone-400 dark:text-gray-400 leading-relaxed max-w-[250px]">Designed with SwiftUI for macOS.</p>
+                                <h2 class="text-2xl font-bold mb-4 text-primary">Native<br>Feel</h2>
+                                <p class="text-secondary leading-relaxed max-w-[250px]">Designed with SwiftUI for macOS.</p>
                             </div>
 
                         </div>
@@ -357,10 +431,10 @@
 
             <!-- Footer -->
             <footer class="relative flex flex-col items-center justify-center px-8 pb-20 opacity-0 delay-[1000ms] sm:pb-0 animate-fadeIn" style="animation-fill-mode: forwards;">
-                <div class="flex items-center justify-center gap-12 mb-8">
-                     <a href="privacy.html" class="text-stone-500 hover:text-stone-300 transition">Privacy</a>
-                     <a href="terms.html" class="text-stone-500 hover:text-stone-300 transition">Terms</a>
-                     <a href="mailto:PastryFeedback10@gmail.com" class="text-stone-500 hover:text-stone-300 transition">Contact</a>
+                <div class="footer-link-container">
+                     <a href="privacy.html" class="footer-link">Privacy</a>
+                     <a href="terms.html" class="footer-link">Terms</a>
+                     <a href="mailto:PastryFeedback10@gmail.com" class="footer-link">Contact</a>
                 </div>
                 <div class="pointer-events-none -mt-6 hidden select-none overflow-hidden bg-gradient-to-b from-orange-950/10 from-25% to-orange-950/0 bg-clip-text text-[14rem] font-black leading-none text-transparent sm:block sm:h-48 md:h-64 md:text-[18rem] lg:h-80 lg:text-[20rem] dark:from-purple-100/[0.035] dark:to-purple-100/0">
                     Pastry
@@ -422,10 +496,8 @@
         let hover = false;
         
         // Configuration
-        const PARTICLE_COUNT = 60; // Increased count
-        const WAVE_AMPLITUDE = 10;
-        const WAVE_FREQUENCY = 0.05;
-        const PARTICLE_SIZE = 2; // Slightly smaller for "dust" look
+        const PARTICLE_COUNT = 80; 
+        const PARTICLE_SIZE = 2; 
         
         function resize() {
             width = canvas.width = container.offsetWidth;
@@ -435,7 +507,6 @@
         class Particle {
             constructor() {
                 this.reset();
-                // Randomize initial position more uniformly
                 this.x = Math.random() * width; 
                 this.y = height / 2 + (Math.random() - 0.5) * 20; 
             }
@@ -451,32 +522,25 @@
             
             update() {
                 if (hover) {
-                    // Disperse when hovering (revealing the text behind)
-                    // Move away from center or just fade out
+                    // Reveal text: Particles fade out
                     this.alpha -= 0.05;
                     this.y += (Math.random() - 0.5) * 5;
                     this.x += (Math.random() - 0.5) * 5;
                     
                     if (this.alpha <= 0) {
-                       // Reset but keep transparent until hover ends? 
-                       // actually, let's keep them invisible
                        this.alpha = 0;
                     }
                 } else {
-                    // Coalesce / Wave motion when NOT hovering (hiding the text)
-                    this.alpha += 0.02;
+                    // Hide text: Particles fade in and obscure
+                    this.alpha += 0.05;
                     if (this.alpha > 1) this.alpha = 1;
                     
                     this.phase += 0.05;
-                    
-                    // Sinusoidal motion mostly horizontal
+                    // Jittery motion
                     this.x += this.vx + Math.sin(this.phase) * 0.2;
+                    this.y += this.vy + Math.cos(this.phase) * 0.2;
                     
-                    // Keep vertically centered-ish with noise
-                    let targetY = height / 2 + Math.sin(this.x * WAVE_FREQUENCY + this.phase) * WAVE_AMPLITUDE;
-                    this.y += (targetY - this.y) * 0.1;
-                    
-                    // Wrap around screen
+                    // Wrap around
                     if (this.x > width) this.x = 0;
                     if (this.x < 0) this.x = width;
                 }
