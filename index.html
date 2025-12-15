@@ -228,13 +228,13 @@
         .feature-grid-layout {
             display: grid;
             grid-template-columns: repeat(1, minmax(0, 1fr));
-            gap: 4rem; /* Vertical gap */
+            gap: 6rem; /* Vertical gap increased from 4rem */
         }
         
         @media (min-width: 640px) {
             .feature-grid-layout {
                 grid-template-columns: repeat(3, minmax(0, 1fr));
-                gap: 2rem;
+                gap: 4rem 2rem; /* Vertical gap 4rem, horizontal 2rem */
             }
         }
 
@@ -244,6 +244,16 @@
             align-items: center;
             text-align: center;
             justify-content: flex-start;
+            height: 100%; /* Fill the grid cell */
+        }
+
+        .feature-item h2 {
+            min-height: 3.5rem; /* Force enough height for 2 lines of text */
+            display: flex;
+            align-items: flex-end; /* Align text to bottom of this box so 1-line titles sit lower */
+            justify-content: center;
+            margin-bottom: 1rem;
+            line-height: 1.2;
         }
 
         .footer-link-container {
@@ -424,8 +434,8 @@
                                         <path class="origin-center transition duration-300 group-hover:-translate-x-px" d="M10.793 19.688c-.82 0-1.207-.41-1.207-1.29v-4.664c0-.82.34-1.218 1.043-1.265h6.398c.692.047 1.032.445 1.032 1.265v4.664c0 .88-.387 1.29-1.196 1.29h-6.07Z"></path>
                                     </svg>
                                 </div>
-                                <h2 class="text-2xl font-bold mb-4 text-primary">Private &<br>Secure</h2>
-                                <p class="text-secondary leading-relaxed max-w-[250px]">Data stays local. No cloud syncing.</p>
+                                <h2 class="text-2xl font-bold mb-4 text-primary h-14 flex items-end justify-center">Private &<br>Secure</h2>
+                                <p class="text-secondary leading-relaxed max-w-[250px] min-h-[3rem]">Data stays local. No cloud syncing.</p>
                             </div>
 
                              <!-- Feature 6: Native Feel (Icon: Blazing Fast/Bolt) -->
@@ -435,8 +445,8 @@
                                         <path class="origin-center transition duration-300 group-hover:translate-x-1 group-hover:delay-100" d="M6 15.5402C6 15.9972 6.35156 16.3371 6.84375 16.3371H13.4648L9.97266 25.8293C9.51562 27.0363 10.7695 27.6808 11.5547 26.6965L22.207 13.384C22.4062 13.1379 22.5117 12.9035 22.5117 12.634C22.5117 12.1887 22.1602 11.8371 21.668 11.8371H15.0469L18.5391 2.34491C18.9961 1.13787 17.7422 0.493343 16.957 1.48944L6.30469 14.7902C6.10547 15.048 6 15.2824 6 15.5402Z"></path>
                                     </svg>
                                 </div>
-                                <h2 class="text-2xl font-bold mb-4 text-primary">Native<br>Feel</h2>
-                                <p class="text-secondary leading-relaxed max-w-[250px]">Designed with SwiftUI for macOS.</p>
+                                <h2 class="text-2xl font-bold mb-4 text-primary h-14 flex items-end justify-center">Native<br>Feel</h2>
+                                <p class="text-secondary leading-relaxed max-w-[250px] min-h-[3rem]">Designed with SwiftUI for macOS.</p>
                             </div>
 
                         </div>
