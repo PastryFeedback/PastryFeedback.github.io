@@ -275,6 +275,169 @@
         .footer-link:hover {
             color: #d6d3d1;
         }
+        
+        /* Profile Dropdown */
+        .app-header {
+            position: relative;
+        }
+        
+        .header-title {
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .profile-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 16px;
+            width: 180px;
+            background: rgba(30, 30, 35, 0.98);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 6px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.95);
+            transition: all 0.2s ease;
+            z-index: 100;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .profile-dropdown.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(4px) scale(1);
+        }
+        
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        
+        .dropdown-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+        }
+        
+        .dropdown-item.active {
+            color: #fff;
+        }
+        
+        .dropdown-item .checkmark {
+            opacity: 0;
+            stroke: url(#gradient-check);
+        }
+        
+        .dropdown-item.active .checkmark {
+            opacity: 1;
+            stroke: rgb(179, 77, 230);
+        }
+        
+        .dropdown-item.new-profile {
+            color: rgba(255, 255, 255, 0.5);
+            gap: 8px;
+            justify-content: flex-start;
+        }
+        
+        .dropdown-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 6px 0;
+        }
+        
+        .chevron {
+            transition: transform 0.2s ease;
+        }
+        
+        .chevron.open {
+            transform: rotate(180deg);
+        }
+        
+        /* Invisible Ink Effect */
+        .ink-row .row-content {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .ink-hidden {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            position: absolute;
+            left: 0;
+        }
+        
+        .ink-dots {
+            display: flex;
+            gap: 3px;
+            transition: opacity 0.3s ease;
+        }
+        
+        .ink-dots::before {
+            content: '• • • • • • • • • •';
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.7rem;
+        }
+        
+        .ink-dots.short::before {
+            content: '• • • • • •';
+        }
+        
+        .ink-row:hover .ink-hidden,
+        .ink-row.revealed .ink-hidden {
+            opacity: 1;
+        }
+        
+        .ink-row:hover .ink-dots,
+        .ink-row.revealed .ink-dots {
+            opacity: 0;
+        }
+        
+        /* Demo Toast */
+        .demo-toast {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: linear-gradient(135deg, rgba(179, 77, 230, 0.9) 0%, rgba(77, 128, 255, 0.9) 100%);
+            padding: 10px 20px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #fff;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(179, 77, 230, 0.3);
+        }
+        
+        .demo-toast.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        /* Row click animation */
+        .app-row.clicked {
+            background: rgba(179, 77, 230, 0.3) !important;
+            transform: scale(0.98);
+        }
+        
+        .app-row {
+            transition: all 0.15s ease;
+        }
 
     </style>
 </head>
@@ -312,69 +475,110 @@
 
             <main class="flex flex-1 justify-center px-8 pb-16 pt-32 sm:pb-28 sm:pt-48 xl:px-36">
                 <section class="flex w-full max-w-screen-xl flex-col items-center">
-                    <!-- Hero Text -->
-                    <section class="mb-14 w-full sm:mb-20 xl:w-4/5 xl:max-w-screen-lg text-center">
+                    <!-- Hero Text - Title Only -->
+                    <section class="mb-14 w-full sm:mb-16 xl:w-4/5 xl:max-w-screen-lg text-center">
                         <h1 class="relative text-center text-5xl font-bold leading-[1.05] tracking-tight opacity-0 delay-50 sm:text-8xl sm:leading-none animate-fadeIn text-primary" style="animation-fill-mode: forwards;">
                             Clipboard Manager<br>
                             for <span class="relative text-gradient-pastry">Mac</span>
                         </h1>
-                        <p class="mt-6 text-xl text-secondary opacity-0 delay-300 animate-fadeIn" style="animation-fill-mode: forwards;">
-                            Minimalistic. Highly Polished. Pastry.
-                        </p>
                     </section>
 
                     <!-- Interactive Demo Section -->
-                    <section class="isolate flex w-full select-none flex-col items-center px-0 lg:px-8 animate-fadeIn" style="animation-fill-mode: forwards;">
-                        <div class="relative h-[600px] w-full overflow-hidden rounded-3xl sm:h-[600px] shadow-2xl">
+                    <section class="isolate flex w-full select-none flex-col items-center px-0 lg:px-8 opacity-0 delay-300 animate-fadeIn" style="animation-fill-mode: forwards;">
+                        <div class="relative h-[500px] w-full overflow-hidden rounded-3xl sm:h-[550px] shadow-2xl">
                             <!-- Wallpaper Background -->
                             <div class="absolute inset-0 w-full h-full bg-stone-900">
                                 <img class="w-full h-full object-cover opacity-60" src="https://cdn.tryalcove.com/images/wallpaper.webp" alt="Background">
                             </div>
 
                             <!-- Pastry App Window Mockup -->
-                            <div class="mockup-window app-window">
+                            <div class="mockup-window app-window" id="pastry-demo">
                                 <div class="app-header">
-                                    <div class="header-title">
-                                        Recents <span class="chevron">▼</span>
+                                    <div class="header-title" id="profile-dropdown-trigger">
+                                        <span id="current-profile-name">Recents</span> <span class="chevron" id="dropdown-chevron">▼</span>
                                     </div>
                                     <div class="header-actions">
-                                        <div class="action-icon" title="Clear">
+                                        <div class="action-icon" title="Clear" id="clear-btn">
                                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
                                         </div>
-                                        <div class="action-icon" title="Settings">
+                                        <div class="action-icon" title="Settings" id="settings-btn">
                                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 5 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
                                         </div>
                                     </div>
+                                    
+                                    <!-- Profile Dropdown Menu -->
+                                    <div class="profile-dropdown" id="profile-dropdown">
+                                        <div class="dropdown-item active" data-profile="Recents">
+                                            <span>Recents</span>
+                                            <svg class="checkmark" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        </div>
+                                        <div class="dropdown-item" data-profile="Work">
+                                            <span>Work</span>
+                                            <svg class="checkmark" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        </div>
+                                        <div class="dropdown-item" data-profile="Personal">
+                                            <span>Personal</span>
+                                            <svg class="checkmark" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        </div>
+                                        <div class="dropdown-divider"></div>
+                                        <div class="dropdown-item new-profile">
+                                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                            <span>New Profile</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="app-content">
-                                    <div class="app-row">
+                                <div class="app-content" id="snippets-container">
+                                    <div class="app-row" data-text="https://github.com/PastryFeedback">
                                         <div class="row-shortcut">⌘ ⌥ 1</div>
                                         <div class="row-content">https://github.com/PastryFeedback</div>
                                     </div>
-                                    <div class="app-row">
+                                    <div class="app-row ink-row" data-text="SecretP@ssw0rd123" data-hidden="true">
                                         <div class="row-shortcut">⌘ ⌥ 2</div>
-                                        <div class="row-content invisible-ink"></div>
+                                        <div class="row-content">
+                                            <span class="ink-hidden">SecretP@ssw0rd123</span>
+                                            <div class="ink-dots"></div>
+                                        </div>
                                     </div>
-                                    <div class="app-row">
+                                    <div class="app-row" data-text="PastryFeedback10@gmail.com">
                                         <div class="row-shortcut">⌘ ⌥ 3</div>
                                         <div class="row-content">PastryFeedback10@gmail.com</div>
                                     </div>
-                                    <div class="app-row">
+                                    <div class="app-row" data-text="Color(red: 0.7, green: 0.3, blue: 0.9)">
                                         <div class="row-shortcut">⌘ ⌥ 4</div>
                                         <div class="row-content">Color(red: 0.7, green: 0.3, blue: 0.9)</div>
                                     </div>
-                                    <div class="app-row">
+                                    <div class="app-row" data-text="Minimalistic macOS clipboard manager">
                                         <div class="row-shortcut">⌘ ⌥ 5</div>
                                         <div class="row-content">Minimalistic macOS clipboard manager</div>
                                     </div>
-                                    <div class="app-row">
+                                    <div class="app-row ink-row" data-text="API_KEY_8f3k2j" data-hidden="true">
                                         <div class="row-shortcut">⌘ ⌥ 6</div>
-                                        <div class="row-content invisible-ink" style="width: 40%;"></div>
+                                        <div class="row-content">
+                                            <span class="ink-hidden">API_KEY_8f3k2j</span>
+                                            <div class="ink-dots short"></div>
+                                        </div>
                                     </div>
+                                </div>
+                                
+                                <!-- Toast Notification -->
+                                <div class="demo-toast" id="demo-toast">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <span>Copied & Pasted!</span>
                                 </div>
                             </div>
                         </div>
+                        
+                        <!-- Interactive Hint -->
+                        <div class="mt-4 flex cursor-default select-none items-center p-4 text-sm font-bold text-stone-400/60">
+                            <svg class="mr-2 h-3.5 w-3.5 fill-current transition duration-500" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5.06 3.024C4.804 1.238 6.858.052 8.276 1.168l17.117 13.466c1.47 1.159.688 3.522-1.182 3.574l-7.03.19a1.998 1.998 0 0 0-1.65.953l-3.68 5.993c-.98 1.594-3.418 1.089-3.685-.764L5.06 3.024Z"></path></svg>
+                            Psst… it's interactive!
+                        </div>
                     </section>
+                    
+                    <!-- Tagline -->
+                    <p class="mt-8 mb-16 text-xl text-secondary opacity-0 delay-500 animate-fadeIn text-center" style="animation-fill-mode: forwards;">
+                        Minimalistic. Highly Polished. Pastry.
+                    </p>
 
                     <!-- Features Grid -->
                     <section class="isolate mt-32 w-full opacity-0 delay-[800ms] sm:mt-32 animate-fadeIn" style="animation-fill-mode: forwards;">
@@ -484,18 +688,75 @@
     </style>
     
     <script>
-        // Simple interactivity for the mock window
+        // ========================================
+        // Interactive Demo for Pastry
+        // ========================================
+        
+        // Profile Dropdown
+        const dropdownTrigger = document.getElementById('profile-dropdown-trigger');
+        const dropdown = document.getElementById('profile-dropdown');
+        const chevron = document.getElementById('dropdown-chevron');
+        const profileName = document.getElementById('current-profile-name');
+        const dropdownItems = document.querySelectorAll('.dropdown-item:not(.new-profile)');
+        
+        let dropdownOpen = false;
+        
+        dropdownTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownOpen = !dropdownOpen;
+            dropdown.classList.toggle('open', dropdownOpen);
+            chevron.classList.toggle('open', dropdownOpen);
+        });
+        
+        dropdownItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const profile = item.dataset.profile;
+                profileName.textContent = profile;
+                
+                // Update active state
+                dropdownItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+                
+                // Close dropdown
+                dropdownOpen = false;
+                dropdown.classList.remove('open');
+                chevron.classList.remove('open');
+            });
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', () => {
+            if (dropdownOpen) {
+                dropdownOpen = false;
+                dropdown.classList.remove('open');
+                chevron.classList.remove('open');
+            }
+        });
+        
+        dropdown.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+        
+        // Row click with toast
+        const toast = document.getElementById('demo-toast');
+        let toastTimeout;
+        
         document.querySelectorAll('.app-row').forEach(row => {
             row.addEventListener('click', () => {
-                // Visual feedback for click
-                const originalBg = row.style.backgroundColor;
-                row.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
-                row.style.transform = 'scale(0.98)';
+                // Visual feedback
+                row.classList.add('clicked');
                 
                 setTimeout(() => {
-                    row.style.backgroundColor = originalBg;
-                    row.style.transform = 'scale(1)';
+                    row.classList.remove('clicked');
                 }, 150);
+                
+                // Show toast
+                clearTimeout(toastTimeout);
+                toast.classList.add('show');
+                
+                toastTimeout = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 1500);
             });
         });
 
