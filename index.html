@@ -198,7 +198,7 @@
         
         .particle-container {
             position: relative;
-            height: 2rem; /* Reduced height for tighter rectangle */
+            height: 5rem; /* Match the height of other icons */
             width: 140px; /* Constrained width */
             display: flex;
             justify-content: center;
@@ -410,7 +410,7 @@
                                     <div id="invisible-ink-container" class="particle-container">
                                         <!-- Text that will be obscured/revealed -->
                                         <div class="ink-text">123456</div>
-                                        <canvas id="particle-canvas" width="140" height="32"></canvas>
+                                        <canvas id="particle-canvas" width="140" height="80"></canvas>
                                     </div>
                                 </div>
                                 <h2 class="text-2xl font-bold mb-4 text-primary h-[4rem] flex items-end justify-center">Invisible<br>Ink</h2>
@@ -536,12 +536,12 @@
             constructor() {
                 this.reset();
                 this.x = Math.random() * width; 
-                this.y = height / 2 + (Math.random() - 0.5) * 20; 
+                this.y = height / 2 + (Math.random() - 0.5) * 50; 
             }
             
             reset() {
                 this.x = Math.random() * width;
-                this.y = height / 2 + (Math.random() - 0.5) * 20;
+                this.y = height / 2 + (Math.random() - 0.5) * 50;
                 this.vx = (Math.random() - 0.5) * 0.5;
                 this.vy = (Math.random() - 0.5) * 0.5;
                 this.alpha = 0.5 + Math.random() * 0.5;
