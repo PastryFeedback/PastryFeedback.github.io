@@ -194,7 +194,7 @@
                     <section class="mb-14 w-full sm:mb-20 xl:w-4/5 xl:max-w-screen-lg text-center">
                         <h1 class="relative text-center text-5xl font-bold leading-[1.05] tracking-tight opacity-0 delay-50 sm:text-8xl sm:leading-none animate-fadeIn">
                             Clipboard Manager<br>
-                            for <mark class="relative text-orange-400">Mac</mark>
+                            for <mark class="relative text-orange-500">Mac</mark>
                         </h1>
                         <p class="mt-6 text-xl text-stone-600 dark:text-orange-100/60 opacity-0 delay-300 animate-fadeIn" style="animation-fill-mode: forwards;">
                             Minimalistic. Highly Polished. Pastry.
@@ -357,6 +357,18 @@
                     row.style.transform = 'scale(1)';
                 }, 150);
             });
+        });
+
+        // Dark mode detection
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
         });
     </script>
 </body>
