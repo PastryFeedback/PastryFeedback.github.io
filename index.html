@@ -433,6 +433,16 @@
         .app-row {
             transition: all 0.15s ease;
         }
+        
+        /* Empty State */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            color: rgba(255, 255, 255, 0.6);
+        }
 
     </style>
 </head>
@@ -538,14 +548,14 @@
                         </div>
                         
                         <!-- Interactive Hint -->
-                        <div class="mt-4 flex cursor-default select-none items-center p-4 text-sm font-bold text-stone-400/60">
+                        <div class="mt-4 mb-16 flex cursor-default select-none items-center p-4 text-sm font-bold text-stone-400/60">
                             <svg class="mr-2 h-3.5 w-3.5 fill-current transition duration-500" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5.06 3.024C4.804 1.238 6.858.052 8.276 1.168l17.117 13.466c1.47 1.159.688 3.522-1.182 3.574l-7.03.19a1.998 1.998 0 0 0-1.65.953l-3.68 5.993c-.98 1.594-3.418 1.089-3.685-.764L5.06 3.024Z"></path></svg>
                             Psst… it's interactive!
                         </div>
                     </section>
 
                     <!-- Features Grid -->
-                    <section class="isolate mt-32 w-full opacity-0 delay-[800ms] sm:mt-32 animate-fadeIn" style="animation-fill-mode: forwards;">
+                    <section class="isolate mt-16 w-full opacity-0 delay-[800ms] sm:mt-24 animate-fadeIn" style="animation-fill-mode: forwards;">
                         <div class="feature-grid-layout">
                             
                             <!-- Feature 1: Smart History (Icon: Instant Notifications/Bell) -->
@@ -783,6 +793,36 @@
         
         dropdown.addEventListener('click', (e) => {
             e.stopPropagation();
+        });
+        
+        // Clear Recents Button
+        const clearBtn = document.getElementById('clear-btn');
+        clearBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
+            // Only clear if on Recents profile
+            if (profileName.textContent === 'Recents') {
+                // Show empty state
+                snippetsContainer.innerHTML = `
+                    <div class="empty-state">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="opacity: 0.4; margin-bottom: 12px;">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 6v6l4 2"></path>
+                        </svg>
+                        <div style="opacity: 0.5; font-size: 0.9rem;">No recent clips</div>
+                    </div>
+                `;
+                
+                // Show toast
+                clearTimeout(toastTimeout);
+                const toastSpan = toast.querySelector('span');
+                toastSpan.textContent = 'Recents Cleared!';
+                toast.classList.add('show');
+                toastTimeout = setTimeout(() => {
+                    toast.classList.remove('show');
+                    toastSpan.textContent = 'Copied & Pasted!';
+                }, 1500);
+            }
         });
         
         // Toast
