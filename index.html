@@ -978,8 +978,13 @@
         // Unlock Overlay
         const unlockOverlay = document.getElementById('unlock-overlay');
         const pastryDemo = document.getElementById('pastry-demo');
+        const unlockSound = new Audio('sounds/unlock.wav');
         
         unlockOverlay.addEventListener('click', () => {
+            // Play unlock sound
+            unlockSound.currentTime = 0;
+            unlockSound.play().catch(() => {}); // Catch in case autoplay is blocked
+            
             unlockOverlay.classList.add('hidden');
             pastryDemo.classList.remove('locked');
         });
